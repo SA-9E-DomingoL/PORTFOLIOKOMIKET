@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Home || Ssscribs! Portfolio</title>
+
+<style>
+@keyframes bgFloat {
+    from { background-position: center top; }
+    to { background-position: center bottom; }
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body{
+    font-family: Georgia, serif;
+    display:flex;
+    text-align: center;
+    padding-right: 150px;
+    background:#f3f3f3;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.sidebar{
+    width:230px;
+    height:100vh;
+    background:#607d34;
+    display:flex;
+    flex-direction:column;
+    padding-top:20px;
+    position:fixed;
+    left:0;
+    top:0;
+     z-index: 9999; 
+}
+
+.logo{
+    color:white;
+    text-align:center;
+    font-size:40px;
+    margin-bottom:30px;
+}
+
+.nav-item{
+    color:#f0f1c4;
+    text-decoration:none;
+    padding:15px 25px;
+    display:block;
+    transition:0.3s;
+}
+
+.nav-item:hover {
+    background: #9ba91f;
+    color: white;
+    transform: translateX(5px);
+}
+
+.nav-item.active{
+    background:#9ba91f;
+    border-left:4px solid #f8c843;
+    font-weight:bold;
+}
+
+.navbutton{
+    background:none;
+    border:none;
+    color:#ffe5fe;
+    font-family:Georgia, serif;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.content{
+    margin-left:230px;
+    padding:30px;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
+}
+
+main {
+  flex: 1; 
+}
+
+.logo img {
+    width:60%;
+    height:auto;
+    animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(0px);}
+    50%{transform:translateY(-10px);}
+    100%{transform:translateY(0px);}
+}
+
+.full-bleed-image {
+            width: 50%;
+            height: auto;
+
+        }
+
+.card{
+    background:white;
+    width:550px;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+.card h2{
+    color:#dfbe3c;
+    margin-bottom:20px;
+}
+
+.quarter{
+    margin-bottom:25px;
+}
+
+.quarter span{
+    background:#dcace6;
+    padding:3px 8px;
+    font-size:14px;
+    font-weight: bold;
+}
+
+
+.circle-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #9ba91f;
+  color: white;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.circle-btn:hover {
+  background-color: #607d34;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+}
+
+.dashboard-box{
+    background:#dfbe3c;
+    color:white;
+    display:inline-block;
+    padding:15px 25px;
+    border-radius:15px;
+    font-size:30px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+footer {
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+    margin-left: 200px;
+    margin-right: -200px;
+}
+
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-container .tooltip-text {
+  visibility: hidden;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 4px;
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s; 
+}
+
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), 
+                transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* JavaScript triggers this class when scrolled into view */
+.scroll-animate.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Optional small delays if elements appear at the exact same time */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+
+.profile-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px; /* Space between your profile pic and side images */
+    width: 100%;
+}
+
+.profile-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Base rules for both left and right artwork pieces */
+.side-deco {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 500px; /* 1. INCREASED SIZE FROM 100px TO 220px */
+    height: auto;
+    pointer-events: none; /* 2. ADDED: Keeps links/buttons underneath clickable */
+}
+
+/* 3. INCREASED MARGINS TO PREVENT THE LARGER IMAGES FROM OVERLAPPING THE PROFILE */
+.side-deco.left { 
+    right: 100%; 
+    margin-right: 50px; 
+}  
+.side-deco.right { 
+    left: 100%; 
+    margin-left: 50px; 
+}
+
+/* Creates the header background canvas layer */
+.profile-bg-header {
+    position: absolute;
+    top: 0;
+    left: 230px; /* Leaves room for your left sidebar */
+    right: 0;
+    height: 395px; /* Ends exactly at the halfway mark of your circle */
+    background-image: url('header.jpg'); 
+    filter: blur(3px);
+    opacity: 0.7;
+    
+    background-size: cover;        /* Scales the image evenly without stretching it */
+    background-position: center;   /* Centers the image horizontally and vertically */
+    background-repeat: no-repeat;  /* Prevents the image from tiling if it is small */
+    
+    z-index: 0; 
+}
+
+/* Important: Changes content container stack layer to render over the background */
+.content {
+    position: relative; 
+}
+
+.scroll-animate {
+    position: relative;
+    z-index: 1; /* Pushes profile and buttons in front of the background */
+}
+
+</style>
+
+<link rel="icon" type="image/png" href="ssscribs.png">
+
+</head>
+
+<body>
+<nav class="sidebar">
+    <div class="logo">
+        <img src="logo.png">
+    </div>
+    <a href="index.html" class="nav-item active">Home</a>
+    <a href="acadbg.html" class="nav-item">Academic Background</a>
+    <a href="achievements.html" class="nav-item">Hall Of Achievements</a>
+    <a href="personalprojs.html" class="nav-item">Personal Projects ;)</a>
+</nav>
+
+<script>
+function copyToClipboard(textToCopy) {
+    navigator.clipboard.writeText(textToCopy)
+        .then(() => {
+            alert('Email copied to clipboard!');
+        })
+        .catch(err => {
+            console.error('Failed to copy: ', err);
+        });
+}
+</script>
+<div class="profile-bg-header">
+</div>
+<main class="content">
+    
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="scroll-animate">
+        
+        <!-- Wrapper container that handles the decorative placement -->
+        <div class="profile-container">
+            <!-- Left image decoration -->
+            <img src="left-image.png" alt="Left Decor" class="side-deco left">
+            
+            <!-- Center profile picture -->
+            <img src="me!!.png" alt="Profile Picture" class="profile-pic">
+            
+            <!-- Right image decoration -->
+            <img src="right-image.png" alt="Right Decor" class="side-deco right">
+        </div>
+
+        <h1><b>Ssscribs!</b></h1>
+        <br>
+        <div class="button-container">
+            <div class="tooltip-container">
+                <button class="circle-btn" onclick="copyToClipboard('ssscribs.1@gmail.com')" style="color: #f0f1c4;">📨</button>
+                <span class="tooltip-text">business email</span>
+            </div>
+            <div class="tooltip-container">
+                <button class="circle-btn"><a href="https://artfight.net/~Ssscribs" title="artfight (for more art samples)" style="text-decoration: none; color: #f0f1c4;">✏️</a></button>
+                <span class="tooltip-text">artfight (for more art samples)</span>
+            </div>
+            <div class="tooltip-container">
+                <button class="circle-btn"><a href="https://www.webtoons.com/en/canvas/godspeed/list?title_no=1067838" title="webtoon" style="text-decoration: none; color: #f0f1c4;">🗯️</a></button>
+                <span class="tooltip-text">webtoon</span>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+    <div class="scroll-animate delay-1">
+        <img src="dividerf.png">
+    <br>
+    <br>
+        <div class="dashboard-box">
+            About the Artist
+        </div>
+            <div class="card" style="text-align: center;">
+                <div class="quarter">
+                    <h2>✦•┈๑⋅⋯ ⋯⋅๑┈•✦</h2>
+                    <p>I'm Leona (Ssscribs!), and i'm a comic artist and writer I can do both digital (digital painting) and traditional art (gouache, acrylic, watercolor, colored pencils, etc.), and occasionally do 3d mediums such as sculpting & 3d modeling!
+                    </p>
+                </div>
+            </div>
+    </div>
+
+    <div class="scroll-animate delay-2">
+        <img src="divider.png">
+        <div class="dashboard-box">
+        My Recent Works
+        </div>
+
+        <div class="image-grid">
+            <img src="refsheet.jpg" style="width: 500px;">
+            <img src="reffsheet.jpg" style="width: 500px;">
+            <img src="me.png" style="width:500px;">
+            <img src="afhalf.png" style="height: 400px; padding-top: 5px;">
+            <img src="tradpaints.jpg" style="height: 400px; padding-top: 5px;">
+     <br>
+            <img src="eleni.jpg" style="height: 400px; padding-top: 5px;">
+        </div>
+    <br>
+    <br>
+<div class="tooltip-container">
+    <div style="margin-top: 40px; display: block; width: 100%;">
+        <a href="secret.html" title="Go to another page">
+            <img src="logosmall.png" alt="Next Page" style="width: 80px; height: auto; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        </a>
+    </div>
+    <span class="tooltip-text">click on me >:)</span>
+</div>
+
+    </div>
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    // Select all sections configured to animate on scroll
+    const animatedElements = document.querySelectorAll('.scroll-animate');
+
+    const observerOptions = {
+        root: null, // Uses the browser viewport as the container boundary
+        rootMargin: "0px",
+        threshold: 0.15 // Triggers when 15% of the section enters the screen
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Add the class that fires the visual CSS transition
+                entry.target.classList.add('active');
+                // Stop watching this element once it has animated into view
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Tell the script to monitor each element
+    animatedElements.forEach(el => observer.observe(el));
+});
+</script>
+
+
+
+</main>
+
+<footer> 2026 Leona Domingo || All rights reserved</footer>
+
+</body>
+</html> 
